@@ -12,7 +12,7 @@ function Home() {
       <RedButton onClick={onClickButton} backgroundColor={isClick}>
         {isClick ? '111' : 'Change to blue'}
       </RedButton>
-      {/* <RedButton /> */}
+      <input type="checkbox" />
     </>
   );
 }

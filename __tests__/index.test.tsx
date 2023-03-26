@@ -21,6 +21,12 @@ test('button has correct init color', () => {
   expect(colorButton.textContent).toBe('111');
 });
 
-// test('button has correct init text', () => {});
+test('checkbox has correct init state', () => {
+  render(<Home />);
+
+  const checkBox = screen.getByRole('checkbox');
+
+  expect(checkBox).not.toBeChecked();
+});
 
 // test('button turns blue when clicked', () => {});
