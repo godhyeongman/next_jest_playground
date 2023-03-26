@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Home from '../pages/index';
 import '@testing-library/jest-dom';
 import { logRoles } from '@testing-library/react';
@@ -11,6 +11,14 @@ test('button has correct init color', () => {
   const colorButton = screen.getByRole('button', { name: 'Change to blue' });
 
   expect(colorButton).toHaveStyle({ backgroundColor: 'red' });
+
+  fireEvent.click(colorButton);
+
+  expect(colorButton).toHaveStyle({ backgroundColor: 'blue' });
+
+  expect(colorButton).toHaveTextContent('111');
+
+  expect(colorButton.textContent).toBe('111');
 });
 
 // test('button has correct init text', () => {});
