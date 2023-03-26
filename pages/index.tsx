@@ -1,7 +1,16 @@
-function Test() {
-  var a = 1;
+import styled from 'styled-components';
 
-  return <div>테스트</div>;
+function Home() {
+  return (
+    <>
+      <RedButton>Change to blue</RedButton>
+      <RedButton />
+    </>
+  );
 }
 
-export default Test;
+const RedButton = styled.button`
+  background-color: red;
+`;
+
+export default Home;

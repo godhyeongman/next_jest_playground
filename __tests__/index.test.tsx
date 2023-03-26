@@ -1,9 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import Home from '../pages/index';
 import '@testing-library/jest-dom';
+import { logRoles } from '@testing-library/react';
 
-test('홈 페이지 렌더링 테스트', () => {
-  render(<Home></Home>);
-  const homeText = screen.getByText(/테스트/i);
-  expect(homeText).toBeInTheDocument();
+test('button has correct init color', () => {
+  const { container } = render(<Home />);
+  logRoles(container);
+
+  // find an element with a role of button and text of 'Change to blue'
+  const colorButton = screen.getByRole('button', { name: 'Change to blue' });
+
+  expect(colorButton).toHaveStyle({ backgroundColor: 'red' });
 });
+
+// test('button has correct init text', () => {});
+
+// test('button turns blue when clicked', () => {});
