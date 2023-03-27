@@ -7,12 +7,26 @@ function Home() {
   const onClickButton = () => {
     setIsClick(!isClick);
   };
+
+  const onChangeCheckbox = () => {
+    setIsClick(true);
+  };
   return (
     <>
-      <RedButton onClick={onClickButton} backgroundColor={isClick}>
+      <RedButton
+        onClick={onClickButton}
+        backgroundColor={isClick}
+        disabled={isClick}
+      >
         {isClick ? '111' : 'Change to blue'}
       </RedButton>
-      <input type="checkbox" />
+      <input
+        type="checkbox"
+        id="disabled-button-checkbox"
+        defaultChecked={isClick}
+        onChange={onChangeCheckbox}
+      />
+      <label htmlFor="disabled-button-checkbox">Disable button</label>
     </>
   );
 }

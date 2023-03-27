@@ -24,9 +24,14 @@ test('button has correct init color', () => {
 test('checkbox has correct init state', () => {
   render(<Home />);
 
-  const checkBox = screen.getByRole('checkbox');
+  const checkBox = screen.getByRole('checkbox', { name: 'Disable button' });
+  const colorButton = screen.getByRole('button', { name: 'Change to blue' });
 
   expect(checkBox).not.toBeChecked();
+
+  fireEvent.click(checkBox);
+
+  expect(colorButton).toBeDisabled();
 });
 
 // test('button turns blue when clicked', () => {});
