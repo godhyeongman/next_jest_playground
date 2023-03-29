@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 
+export const replaceCamelWithSpaces = colorName =>
+  colorName.replace(/\B([A-Z])\B/g, ' $1');
+
 function Home() {
   const [isClick, setIsClick] = useState(false);
 

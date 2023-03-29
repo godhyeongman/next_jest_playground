@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Home from '../pages/index';
 import '@testing-library/jest-dom';
 import { logRoles } from '@testing-library/react';
+import { replaceCamelWithSpaces } from '../pages/index';
 
 test('button has correct init color', () => {
   const { container } = render(<Home />);
@@ -35,3 +36,17 @@ test('checkbox has correct init state', () => {
 });
 
 // test('button turns blue when clicked', () => {});
+
+describe('space before camel-case capital letters', () => {
+  test('Works for no inner capital letters', () => {
+    expect(replaceCamelWithSpaces('Red')).toBe('Red');
+  });
+
+  test('Works for one inner capital letters', () => {
+    expect(replaceCamelWithSpaces('MidnightBlue')).toBe('Midnight Blue');
+  });
+
+  test('Works for multiple inner capital letters', () => {
+    expect(replaceCamelWithSpaces('MediumVioletRed')).toBe('Medium Violet Red');
+  });
+});
