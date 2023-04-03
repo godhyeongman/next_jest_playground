@@ -1,12 +1,12 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Q2 from '../components/Q2';
 
 test('disabled button Color gray enabled button color switch blue and red', () => {
-  const { getByRole } = render(<Q2 />);
+  render(<Q2 />);
 
-  const targetButton = getByRole('button', { name: 'target Button' });
-  const checkbox = getByRole('checkbox');
+  const targetButton = screen.getByRole('button', { name: 'target Button' });
+  const checkbox = screen.getByRole('checkbox');
 
   expect(targetButton).toHaveStyle({ backgroundColor: 'gray' });
   expect(checkbox).not.toBeChecked();
