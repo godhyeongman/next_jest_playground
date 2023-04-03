@@ -5,28 +5,30 @@ export const replaceCamelWithSpaces = colorName =>
   colorName.replace(/\B([A-Z])\B/g, ' $1');
 
 function Home() {
-  const [isClick, setIsClick] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const onClickButton = () => {
-    setIsClick(!isClick);
+    setIsButtonDisabled(!isButtonDisabled);
   };
 
   const onChangeCheckbox = () => {
-    setIsClick(true);
+    setIsButtonDisabled(true);
   };
+
+  const buttonBackgroundColor = isButtonDisabled ? 'orange' : 'tomato';
   return (
     <>
       <RedButton
         onClick={onClickButton}
-        backgroundColor={isClick}
-        disabled={isClick}
+        backgroundColor={buttonBackgroundColor}
+        disabled={isButtonDisabled}
       >
-        {isClick ? '111' : 'Change to blue'}
+        {isButtonDisabled ? 'change to orange' : 'change to tomato'}
       </RedButton>
       <input
         type="checkbox"
         id="disabled-button-checkbox"
-        defaultChecked={isClick}
+        defaultChecked={isButtonDisabled}
         onChange={onChangeCheckbox}
       />
       <label htmlFor="disabled-button-checkbox">Disable button</label>
@@ -34,9 +36,8 @@ function Home() {
   );
 }
 
-const RedButton = styled.button<{ backgroundColor: boolean }>`
-  background-color: ${({ backgroundColor }) =>
-    backgroundColor ? 'blue' : 'red'};
+const RedButton = styled.button`
+  background-color: ${({ backgroundColor }) => backgroundColor};
 `;
 
 export default Home;

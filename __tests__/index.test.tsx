@@ -9,24 +9,26 @@ test('button has correct init color', () => {
   logRoles(container);
 
   // find an element with a role of button and text of 'Change to blue'
-  const colorButton = screen.getByRole('button', { name: 'Change to blue' });
+  const colorButton = screen.getByRole('button', {
+    name: 'change to tomato',
+  });
 
-  expect(colorButton).toHaveStyle({ backgroundColor: 'red' });
+  expect(colorButton).toHaveStyle({ backgroundColor: 'tomato' });
 
   fireEvent.click(colorButton);
 
-  expect(colorButton).toHaveStyle({ backgroundColor: 'blue' });
+  expect(colorButton).toHaveStyle({ backgroundColor: 'orange' });
 
-  expect(colorButton).toHaveTextContent('111');
+  expect(colorButton).toHaveTextContent('change to orange');
 
-  expect(colorButton.textContent).toBe('111');
+  expect(colorButton.textContent).toBe('change to orange');
 });
 
 test('checkbox has correct init state', () => {
   render(<Home />);
 
   const checkBox = screen.getByRole('checkbox', { name: 'Disable button' });
-  const colorButton = screen.getByRole('button', { name: 'Change to blue' });
+  const colorButton = screen.getByRole('button', { name: 'change to tomato' });
 
   expect(checkBox).not.toBeChecked();
 
