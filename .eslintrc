@@ -1,12 +1,16 @@
 {
+  "plugins": ["testing-library", "jest-dom", "prettier", "@typescript-eslint"],
   "extends": [
-    "plugin:testing-library/react",
     "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended",
     "plugin:prettier/recommended",
     "next",
     "next/core-web-vitals"
   ],
+
   "rules": {
     "prettier/prettier": [
       "error",
