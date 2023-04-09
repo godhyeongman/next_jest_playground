@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Q2 from '../components/Q2';
+import Q2 from '../src/components/Q2';
 
 test('disabled button Color gray enabled button color switch blue and red', () => {
   render(<Q2 />);

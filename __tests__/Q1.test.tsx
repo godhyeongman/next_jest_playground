@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Q1 from '../components/Q1';
+import Q1 from '../src/components/Q1';
 
 test('chekbox is checked', () => {
   render(<Q1 />);
@@ -8,7 +8,7 @@ test('chekbox is checked', () => {
   const targetButton = screen.getByRole('button', { name: 'target Button' });
 
   expect(checkBox).not.toBeChecked();
-  expect(targetButton).not.toBeEnabled();
+  expect(targetButton).toBeDisabled();
 
   fireEvent.click(checkBox);
 

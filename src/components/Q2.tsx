@@ -32,7 +32,7 @@ function Q2() {
   );
 }
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{ buttonSwitch: boolean }>`
   background-color: ${({ disabled, buttonSwitch }) =>
     disabled ? 'gray' : buttonSwitch ? 'blue' : 'red'};
 `;

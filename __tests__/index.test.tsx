@@ -21,7 +21,7 @@ test('button has correct init color', () => {
 
   expect(colorButton).toHaveTextContent('change to orange');
 
-  expect(colorButton.textContent).toBe('change to orange');
+  expect(colorButton).toHaveTextContent('change to orange');
 });
 
 test('checkbox has correct init state', () => {
