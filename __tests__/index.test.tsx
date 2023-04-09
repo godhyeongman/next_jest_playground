@@ -1,8 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Home from '../pages/index';
+import Home from '../pages/getStart';
 import '@testing-library/jest-dom';
 import { logRoles } from '@testing-library/react';
-import { replaceCamelWithSpaces } from '../pages/index';
+import { replaceCamelWithSpaces } from '../pages/getStart';
 
 test('button has correct init color', () => {
   const { container } = render(<Home />);
