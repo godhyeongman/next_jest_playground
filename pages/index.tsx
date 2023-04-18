@@ -8,7 +8,7 @@ function SundaeIceCream() {
   );
 }
 
-function OrderSummary() {
+export function OrderSummary() {
   return (
     <div>
       <h2>Order Summary</h2>
@@ -17,7 +17,7 @@ function OrderSummary() {
   );
 }
 
-function SummaryForm() {
+export function SummaryForm() {
   return (
     <form>
       <label htmlFor="terms-and-conditions">
