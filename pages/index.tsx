@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 function SundaeIceCream() {
   return (
     <>
@@ -18,13 +20,23 @@ export function OrderSummary() {
 }
 
 export function SummaryForm() {
+  const [checked, setChecked] = useState(false);
+
+  const onChangeCheckbox = () => {
+    setChecked(!checked);
+  };
+
   return (
     <form>
       <label htmlFor="terms-and-conditions">
-        <input type="checkbox" id="terms-and-conditions" />I agree to Terms and
-        Conditions
+        <input
+          type="checkbox"
+          id="terms-and-conditions"
+          onChange={onChangeCheckbox}
+        />
+        I agree to Terms and Conditions
       </label>
-      <button type="submit" disabled={true}>
+      <button type="submit" disabled={!checked}>
         Confirm Order
       </button>
     </form>
