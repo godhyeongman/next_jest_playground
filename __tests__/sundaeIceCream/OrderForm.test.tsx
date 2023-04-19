@@ -33,3 +33,24 @@ test('Checkbox enables button on first click and disables on second click', asyn
   await user.click(checkBox);
   expect(confirmButton).toBeDisabled();
 });
+
+test('popover responds to hover', async () => {
+  const user = userEvent.setup();
+  render(<SummaryForm />);
+
+  // 팝오버 시작했을때 없음
+  const nonePopover = screen.queryByText(
+    /no ice cream will actually be delivered/i,
+  );
+  expect(nonePopover).not.toBeInTheDocument();
+
+  // 체크 박스 라벨 호버 했을때 팝오버 등장
+  const termsAndConditions = screen.getByText(/terms and conditions/i);
+  await user.hover(termsAndConditions);
+  const popover = screen.getByText(/no ice cream will actually be delivered/i);
+  expect(popover).toBeInTheDocument();
+
+  // 호버 풀었을때 팝오버 사라짐
+  await user.unhover(termsAndConditions);
+  expect(popover).not.toBeInTheDocument();
+});
