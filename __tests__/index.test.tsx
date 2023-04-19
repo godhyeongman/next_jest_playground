@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import Home from '../pages/getStart';
-import '@testing-library/jest-dom';
 import { logRoles } from '@testing-library/react';
 import { replaceCamelWithSpaces } from '../pages/getStart';
 
