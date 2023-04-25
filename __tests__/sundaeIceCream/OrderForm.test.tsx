@@ -39,15 +39,13 @@ test('popover responds to hover', async () => {
   render(<SummaryForm />);
 
   // 팝오버 시작했을때 없음
-  const nonePopover = screen.queryByText(
-    /no ice cream will actually be delivered/i,
-  );
+  const nonePopover = screen.queryByText(/No ice cream will deliverd/i);
   expect(nonePopover).not.toBeInTheDocument();
 
   // 체크 박스 라벨 호버 했을때 팝오버 등장
   const termsAndConditions = screen.getByText(/terms and conditions/i);
   await user.hover(termsAndConditions);
-  const popover = screen.getByText(/no ice cream will actually be delivered/i);
+  const popover = screen.getByText(/No ice cream will deliverd/i);
   expect(popover).toBeInTheDocument();
 
   // 호버 풀었을때 팝오버 사라짐

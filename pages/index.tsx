@@ -39,13 +39,15 @@ export function SummaryForm() {
 
   return (
     <form>
-      <label htmlFor="terms-and-conditions">
+      <label
+        htmlFor="terms-and-conditions"
+        onMouseEnter={onEnterCheckbox}
+        onMouseLeave={onLeaveCheckbox}
+      >
         <input
           type="checkbox"
           id="terms-and-conditions"
           onChange={onChangeCheckbox}
-          onMouseEnter={onEnterCheckbox}
-          onMouseLeave={onLeaveCheckbox}
         />
         I agree to Terms and Conditions
       </label>
@@ -61,15 +63,17 @@ type PopoverProps = { isHover: boolean };
 
 const Popover = ({ isHover }: PopoverProps) => {
   return (
-    <PopoverWrapper isHover={isHover}>
-      <PopoverBody>No ice cream will deliverd</PopoverBody>
-    </PopoverWrapper>
+    <>
+      {isHover && (
+        <PopoverWrapper>
+          <PopoverBody>No ice cream will deliverd</PopoverBody>
+        </PopoverWrapper>
+      )}
+    </>
   );
 };
 
-const PopoverWrapper = styled.div<{ isHover: boolean }>`
-  display: ${isHover => (isHover ? 'block' : 'none')};
-`;
+const PopoverWrapper = styled.div``;
 
 const PopoverBody = styled.span``;
 
