@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Q1 from '../src/components/Q1';
+import Q1 from './Q1';
 
 test('chekbox is checked', () => {
   render(<Q1 />);
