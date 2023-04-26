@@ -1,8 +1,16 @@
-import { type } from 'os';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 function SundaeIceCream() {
+  useEffect(() => {
+    console.log('SundaeIceCream mounted');
+    if (process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { worker } = require('../src/mocks/server');
+      worker.start();
+    }
+  }, []);
+
   return (
     <>
       <h1>Sundae Ice Cream</h1>
@@ -31,6 +39,7 @@ export function SummaryForm() {
 
   const onEnterCheckbox = () => {
     setHover(true);
+    console.log(1);
   };
 
   const onLeaveCheckbox = () => {
