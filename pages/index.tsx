@@ -1,21 +1,27 @@
-import { useEffect } from 'react';
 import { OrderSummary, SummaryForm } from '../src/components/OrderForm';
+import Options from '../src/components/Options/Options';
+import { useEffect } from 'react';
+import axios from 'axios';
+
+const getData = async () => {
+  await axios
+    .get(`http://localhost:3000/scoops`)
+    .then(res => console.log(res.data))
+    .catch(err => {
+      console.error(err);
+    });
+};
 
 function SundaeIceCream() {
   useEffect(() => {
-    console.log('SundaeIceCream mounted');
-    if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const { worker } = require('../src/mocks/server');
-      worker.start();
-    }
+    // getData();
   }, []);
-
   return (
     <>
       <h1>Sundae Ice Cream</h1>
       <OrderSummary />
       <SummaryForm />
+      <Options optionType="scoops" />
     </>
   );
 }

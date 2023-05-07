@@ -20,7 +20,6 @@ export function SummaryForm() {
 
   const onEnterCheckbox = () => {
     setHover(true);
-    console.log(1);
   };
 
   const onLeaveCheckbox = () => {
