@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ScoopOption from './ScoopOptions';
+import ToppingOption from './ToppingOption';
 import type { ScoopProps, ScoopOptionT } from './ScoopOptions';
 import axios from 'axios';
 
@@ -21,12 +22,11 @@ export default function Options({ optionType }: OptionsProps) {
 
   //TODO: null 토핑 옵션컴포넌트로 교체
   const ItemComponent: ScoopOptionT | null =
-    optionType === 'scoops' ? ScoopOption : null;
+    optionType === 'scoops' ? ScoopOption : ToppingOption;
 
   const optionItems: Array<JSX.Element | undefined> = items.map(
     ({ name, imagePath }) => {
-      if (ItemComponent !== null)
-        return <ItemComponent name={name} imagePath={imagePath} key={name} />;
+      return <ItemComponent name={name} imagePath={imagePath} key={name} />;
     },
   );
 
