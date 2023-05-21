@@ -21,14 +21,12 @@ export default function Options({ optionType }: OptionsProps) {
   }, [optionType]);
 
   //TODO: null 토핑 옵션컴포넌트로 교체
-  const ItemComponent: ScoopOptionT | null =
+  const ItemComponent: ScoopOptionT =
     optionType === 'scoops' ? ScoopOption : ToppingOption;
 
-  const optionItems: Array<JSX.Element | undefined> = items.map(
-    ({ name, imagePath }) => {
-      return <ItemComponent name={name} imagePath={imagePath} key={name} />;
-    },
-  );
+  const optionItems: JSX.Element[] = items.map(({ name, imagePath }) => {
+    return <ItemComponent name={name} imagePath={imagePath} key={name} />;
+  });
 
   return <div>{optionItems}</div>;
 }
