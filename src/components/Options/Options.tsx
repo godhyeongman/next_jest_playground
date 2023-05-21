@@ -3,6 +3,8 @@ import ScoopOption from './ScoopOptions';
 import ToppingOption from './ToppingOption';
 import type { ScoopProps, ScoopOptionT } from './ScoopOptions';
 import axios from 'axios';
+import { AlertBanner } from '../AlertBanner';
+import type { AxiosError } from 'axios';
 
 type OptionsProps = {
   optionType: 'scoops' | 'toppings';
@@ -10,15 +12,20 @@ type OptionsProps = {
 
 export default function Options({ optionType }: OptionsProps) {
   const [items, setItems] = useState<ScoopProps[] | []>([]);
+  const [error, setError] = useState<AxiosError>();
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/${optionType}`)
       .then(res => setItems(res.data))
       .catch(err => {
-        console.error(err);
+        setError(err);
       });
   }, [optionType]);
+
+  if (error) {
+    return <AlertBanner message={error} />;
+  }
 
   //TODO: null 토핑 옵션컴포넌트로 교체
   const ItemComponent: ScoopOptionT =
