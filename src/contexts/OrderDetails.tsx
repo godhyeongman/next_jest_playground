@@ -2,9 +2,12 @@ import { createContext, useContext, useState } from 'react';
 
 const OrderDetail = createContext(null);
 
-type defaultOptionT = { [key: string]: { [key: string]: number } | null };
+type defaultOptionT<T extends string, K extends string> = Record<
+  T,
+  Record<K, number> | null
+>;
 
-const DEFAULT_OPTIONS: defaultOptionT = {
+const DEFAULT_OPTIONS: defaultOptionT<string, string> = {
   scoops: null,
   toppings: null,
 };
@@ -16,7 +19,7 @@ export function useOrderDetails() {
 }
 
 type updateOptionT = (
-  target: keyof defaultOptionT,
+  target: string,
   targetItem: string,
   newItemCount: number,
 ) => void;
@@ -26,12 +29,10 @@ export function OrderDetailsProvider() {
 
   const updateItemCount: updateOptionT = (target, targetItem, newItemCount) => {
     const newOptionCounts = { ...optionCounts };
+    const targetProperty = newOptionCounts[target];
 
-    const { [target]: _target } = newOptionCounts;
+    if (!targetProperty) throw new Error('target property is falsy');
 
-    setOptionCounts({
-      ...newOptionCounts,
-      [target]: { ..._target, [targetItem]: newItemCount },
-    });
+    targetProperty[targetItem] = newItemCount;
   };
 }
