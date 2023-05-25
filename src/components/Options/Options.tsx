@@ -5,6 +5,9 @@ import type { ScoopProps, ScoopOptionT } from './ScoopOptions';
 import axios from 'axios';
 import { AlertBanner } from '../AlertBanner';
 import type { AxiosError } from 'axios';
+import { pricePerItem } from '../../constants';
+import { formatCurrency } from '../../utils';
+import { useOrderDetails } from '../../contexts/OrderDetails';
 
 type OptionsProps = {
   optionType: 'scoops' | 'toppings';
@@ -13,6 +16,8 @@ type OptionsProps = {
 export default function Options({ optionType }: OptionsProps) {
   const [items, setItems] = useState<ScoopProps[] | []>([]);
   const [error, setError] = useState<AxiosError>();
+
+  const { totalSums } = useOrderDetails()!;
 
   useEffect(() => {
     axios
@@ -35,5 +40,17 @@ export default function Options({ optionType }: OptionsProps) {
     return <ItemComponent name={name} imagePath={imagePath} key={name} />;
   });
 
-  return <div>{optionItems}</div>;
+  const title =
+    optionType[0].toUpperCase() + optionType.slice(1).toLocaleLowerCase();
+
+  return (
+    <div>
+      <h2>{title}</h2>
+      <p>{formatCurrency(pricePerItem[optionType])} each</p>
+      <p>
+        {title} total {formatCurrency(totalSums[optionType])}
+      </p>
+      {optionItems}
+    </div>
+  );
 }

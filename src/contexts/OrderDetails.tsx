@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { ReactNode, createContext, useContext, useState } from 'react';
 import { pricePerItem } from '../constants';
 
 type defaultOptionT<T extends string, K extends string> = Record<
@@ -32,9 +32,14 @@ type updateOptionT = (
   newItemCount: number,
 ) => void;
 
-export function OrderDetailsProvider(
-  props: React.ComponentPropsWithoutRef<'div'>,
-) {
+type OrderDetailProviderProps = {
+  children: ReactNode;
+};
+
+export const OrderDetailsProvider: React.FC<OrderDetailProviderProps> = ({
+  children,
+  ...rest
+}) => {
   const [optionCounts, setOptionCounts] = useState(DEFAULT_OPTIONS);
 
   const updateItemCount: updateOptionT = (target, targetItem, newItemCount) => {
@@ -76,8 +81,8 @@ export function OrderDetailsProvider(
   };
 
   return (
-    <OrderDetail.Provider value={providerValue} {...props}>
-      {props.children}
+    <OrderDetail.Provider value={providerValue} {...rest}>
+      {children}
     </OrderDetail.Provider>
   );
-}
+};
