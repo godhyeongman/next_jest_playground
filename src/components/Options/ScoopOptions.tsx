@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useOrderDetails } from '../../contexts/OrderDetails';
 
 export type ScoopProps = {
   name: string;
@@ -7,10 +8,18 @@ export type ScoopProps = {
 export type ScoopOptionT = ({ name, imagePath }: ScoopProps) => JSX.Element;
 
 const ScoopOption: ScoopOptionT = ({ name, imagePath }) => {
+  const { updateItemCount } = useOrderDetails()!;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    updateItemCount(name, 'scoops', +e.target.value);
+  };
+
   return (
-    <div>
+    <>
       <Image src={imagePath} alt={`${name} scoop`} width={64} height={64} />
-    </div>
+      <p>{name}</p>
+      <div onChange={handleChange}>{`->`}</div>
+    </>
   );
 };
 
