@@ -17,7 +17,7 @@ export default function Options({ optionType }: OptionsProps) {
   const [items, setItems] = useState<ScoopProps[] | []>([]);
   const [error, setError] = useState<AxiosError>();
 
-  const { totalSums } = useOrderDetails()!;
+  const context = useOrderDetails()!;
 
   useEffect(() => {
     axios
@@ -27,6 +27,10 @@ export default function Options({ optionType }: OptionsProps) {
         setError(err);
       });
   }, [optionType]);
+
+  if (context === null) {
+    return <div>total sum 에러</div>;
+  }
 
   if (error) {
     return <AlertBanner message={error} />;
@@ -48,7 +52,7 @@ export default function Options({ optionType }: OptionsProps) {
       <h2>{title}</h2>
       <p>{formatCurrency(pricePerItem[optionType])} each</p>
       <p>
-        {title} total {formatCurrency(totalSums[optionType])}
+        {title} total {formatCurrency(context.totalSums[optionType])}
       </p>
       {optionItems}
     </div>
