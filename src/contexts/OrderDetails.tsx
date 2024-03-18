@@ -13,7 +13,7 @@ type orderDetailCtxT = {
   resetOrder: () => void;
 };
 
-const DEFAULT_ORDER_DETAIL = {
+const DEFAULT_ORDER_DETAIL: orderDetailCtxT = {
   totalSums: {
     scoops: 0,
     toppings: 0,

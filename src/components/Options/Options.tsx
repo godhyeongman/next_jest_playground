@@ -51,7 +51,7 @@ export default function Options({ optionType }: OptionsProps) {
       <h2>{title}</h2>
       <p>{formatCurrency(pricePerItem[optionType])} each</p>
       <p>
-        {title} total {formatCurrency(context.totalSums[optionType])}
+        {title} total: {formatCurrency(context.totalSums[optionType])}
       </p>
       {optionItems}
     </div>
