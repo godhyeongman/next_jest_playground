@@ -13,12 +13,25 @@ type orderDetailCtxT = {
   resetOrder: () => void;
 };
 
-const OrderDetail = createContext<null | orderDetailCtxT>(null);
-
+const DEFAULT_ORDER_DETAIL = {
+  totalSums: {
+    scoops: 0,
+    toppings: 0,
+  },
+  optionCounts: {},
+  updateItemCount: (
+    target: string,
+    targetItem: string,
+    newItemCount: number,
+  ) => {},
+  resetOrder: () => {},
+};
 const DEFAULT_OPTIONS: defaultOptionT<string, string> = {
   scoops: null,
   toppings: null,
 };
+
+const OrderDetail = createContext<orderDetailCtxT>(DEFAULT_ORDER_DETAIL);
 
 export function useOrderDetails() {
   const orederContextValue = useContext(OrderDetail);

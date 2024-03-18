@@ -17,20 +17,19 @@ export default function Options({ optionType }: OptionsProps) {
   const [items, setItems] = useState<ScoopProps[] | []>([]);
   const [error, setError] = useState<AxiosError>();
 
-  const context = useOrderDetails()!;
+  let context = useOrderDetails()!;
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/${optionType}`)
-      .then(res => setItems(res.data))
+      .then(res => {
+        console.log(res.data);
+        setItems(res.data);
+      })
       .catch(err => {
         setError(err);
       });
   }, [optionType]);
-
-  if (context === null) {
-    return <div>total sum 에러</div>;
-  }
 
   if (error) {
     return <AlertBanner message={error} />;
